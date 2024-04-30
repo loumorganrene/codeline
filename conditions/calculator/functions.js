@@ -1,5 +1,7 @@
 import { prompt } from "./helper.js";
 
+//Refacto de la calculatrice en functions
+
 console.log("ADDITION-MASTER ™️");
 
 let operator = Number(await prompt(`
