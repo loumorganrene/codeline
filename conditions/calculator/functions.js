@@ -1,22 +1,7 @@
 import { prompt } from "./helper.js";
 
-//Refacto de la calculatrice en functions
-
-console.log("ADDITION-MASTER ™️");
-
-let operator = Number(await prompt(`
-Choose an operator:
-1. Addition
-2. Soustraction
-3. Multiplication
-4. Division
-
-Enter the operator:
-`));
-
-while (operator < 1 || operator > 4 || Number.isNaN(operator)) {
-  console.log("Error: operator is invalid. Please retry.");
-  operator = Number(await prompt(`
+function promptOperator() {
+  const operator = Number(prompt(`
   Choose an operator:
   1. Addition
   2. Soustraction
@@ -25,41 +10,52 @@ while (operator < 1 || operator > 4 || Number.isNaN(operator)) {
 
   Enter the operator
   `));
-};
+
+  if(operator < 1 || operator > 4 || Number.isNaN(operator)) {
+    console.log("Error: operator is invalid. Please retry.");
+    return promptOperator()
+  }
+}
+
+function promptNumber(message) {
+  const number = Number(prompt(message));
+  validateNumber(number);
+  return number;
+}
+
 const MAX_VALUE = 100000000000000;
-
-let firstNumber = Number(await prompt("Enter the first number: "));
-
-if (Number.isNaN(firstNumber) || Math.abs(firstNumber) > MAX_VALUE ) {
-  console.log(`Error: firstNumber is not a number or is superior to ${MAX_VALUE}`);
-  firstNumber = Number(await prompt("Enter the first number: "));
+function validateNumber(number) {
+  if (Number.isNaN(number) || Math.abs(number) > MAX_VALUE) {
+    console.log(`Error: number is invalid or is superior to ${MAX_VALUE}`);
+    process.exit(1);
+  }
 }
 
-let secondNumber = Number(await prompt("Enter the second number: "));
-
-if (Number.isNaN(secondNumber) || Math.abs(secondNumber) > MAX_VALUE) {
-  console.log(`Error: secondNumber is not a number or is superior to ${MAX_VALUE}`);
-  secondNumber = Number(await prompt("Enter the second number: "));
-}
-
-switch (operator) {
-  case 1:
-    console.log("The result of addition is: ", firstNumber + secondNumber);
-    break;
-  case 2:
-    console.log("The result of soustraction is: ", firstNumber - secondNumber);
-    break;
-  case 3:
-    console.log("The result of multiplication is: ", firstNumber * secondNumber);
-    break;
-  case 4:
-    while (secondNumber === 0) {
+function calculateResult(operator, firstNumber, secondNumber) {
+  if (operator === 4) {
+    if (secondNumber === 0) {
       console.log("Error: can't divide by 0")
-      secondNumber = Number(await prompt("Enter the second number: "));
+      return secondNumber = promptNumber("Enter the second number: ");
     }
     console.log("The result of division is: ", firstNumber / secondNumber);
-    break;
-  default:
-    break;
+  }
+  if (operator === 1) {
+    return console.log("The result of addition is: ", firstNumber + secondNumber);
+  }
+  if (operator === 2) {
+    return console.log("The result of soustraction is: ", firstNumber - secondNumber);
+  }
+  if (operator === 3) {
+    return console.log("The result of multiplication is: ", firstNumber * secondNumber);
+  }
 }
 
+function calculator() {
+  console.log("ADDITION-MASTER ™️");
+  let operator = promptOperator()
+  let firstNumber = promptNumber("Enter the first number: ");
+  let secondNumber = promptNumber("Enter the second number: ");
+  let result = calculateResult(operator, firstNumber, secondNumber);
+}
+
+calculator()

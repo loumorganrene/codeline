@@ -2,7 +2,7 @@ import { prompt } from "./helper.js";
 
 console.log("ADDITION-MASTER ™️");
 
-let operator = Number(await prompt(`
+let operator = Number(prompt(`
 Choose an operator:
 1. Addition
 2. Substraction
@@ -14,7 +14,7 @@ Enter the operator:
 
 while (operator < 1 || operator > 4 || Number.isNaN(operator)) {
   console.log("Error: operator is invalid. Please retry.");
-  operator = Number(await prompt(`
+  operator = Number(prompt(`
   Choose an operator:
   1. Addition
   2. Substraction
@@ -26,18 +26,18 @@ while (operator < 1 || operator > 4 || Number.isNaN(operator)) {
 };
 const MAX_VALUE = 100000000000000;
 
-let firstNumber = Number(await prompt("Enter the first number: "));
+let firstNumber = Number(prompt("Enter the first number: "));
 
 if (Number.isNaN(firstNumber) || Math.abs(firstNumber) > MAX_VALUE ) {
   console.log(`Error: firstNumber is not a number or is superior to ${MAX_VALUE}`);
-  firstNumber = Number(await prompt("Enter the first number: "));
+  firstNumber = Number(prompt("Enter the first number: "));
 }
 
-let secondNumber = Number(await prompt("Enter the second number: "));
+let secondNumber = Number(prompt("Enter the second number: "));
 
 if (Number.isNaN(secondNumber) || Math.abs(secondNumber) > MAX_VALUE) {
   console.log(`Error: secondNumber is not a number or is superior to ${MAX_VALUE}`);
-  secondNumber = Number(await prompt("Enter the second number: "));
+  secondNumber = Number(prompt("Enter the second number: "));
 }
 
 switch (operator) {
@@ -53,7 +53,7 @@ switch (operator) {
   case 4:
     while (secondNumber === 0) {
       console.log("Error: can't divide by 0")
-      secondNumber = Number(await prompt("Enter the second number: "));
+      secondNumber = Number(prompt("Enter the second number: "));
     }
     console.log("The result of division is: ", firstNumber / secondNumber);
     break;
