@@ -36,4 +36,39 @@ class MySet {
   }
 }
 
-module.exports = { MySet }
+class MyMap {
+  constructor() {
+    this._values = {};
+  }
+
+  set(key, value) {
+    this._values[key] = value;
+  }
+
+  get(key) {
+    if(this._values.hasOwnProperty(key)) {
+      return this._values[key]
+    }
+  }
+  
+  has(key){
+    return this._values.hasOwnProperty(key)
+  }
+
+  delete(key){
+    if(!this.has(key)) { return false }
+
+    delete this._values[key]
+    return true
+  }
+
+  clear() {
+    this._values = {}
+  }
+
+  get size() {
+    return Object.keys(this._values).length;
+  }
+}
+
+module.exports = { MySet, MyMap }

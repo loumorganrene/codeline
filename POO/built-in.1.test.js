@@ -1,5 +1,6 @@
 const { MySet } = require('./built-in.js');
-/* - Ne pas modifier - */
+
+/* - MySet test - */
 describe("MySet", () => {
 
   test("has", () => {
