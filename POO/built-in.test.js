@@ -18,22 +18,22 @@ describe("MySet", () => {
   });
 
   test("delete", () => {
-    const set = new MySet(["banane", "pomme"]);
+    const set = new MySet(["pomme", "banane"]);
     set.delete("pomme");
     expect(set.has("pomme")).toBe(false);
     expect(set._values).toEqual(["banane"]);
   });
 
   test("clear", () => {
-    const set = new MySet(["pomme", "banane"]);
+    const set = new MySet(["pomme", "banane", "fraise"]);
     set.clear();
     expect(set._values).toEqual([]);
   });
 
   test("size", () => {
-    const set = new MySet(["pomme", "banane"]);
+    const set = new MySet(["pomme", "banane", "fraise"]);
 
-    expect(set.size).toEqual(2)
+    expect(set.size).toEqual(3)
   })
 
 });
