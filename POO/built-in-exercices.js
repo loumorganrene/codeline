@@ -1,15 +1,18 @@
-function intersection(arr1, arr2) {
+export function intersection(arr1, arr2) {
   // TODO
-  let uniqueArray = new Set()
+  let uniArr1 = new Set(arr1)
+  let uniArr2 = new Set(arr2)
+  let uniArr = []
+  uniArr1.forEach(element => {
+    if (uniArr2.has(element)) {
+      uniArr.push(element)
+    }
+  })
 
-  arr1.forEach(element => {
-    arr2.includes(element) && uniqueArray.add(element)
-  });
-
-  return Array.from(uniqueArray)
+  return uniArr
 }
 
-const twoSum = (nums, target) => {
+export const twoSum = (nums, target) => {
   // 🦁 Code ici
   let numsMap = new Map(nums)
 
@@ -17,5 +20,3 @@ const twoSum = (nums, target) => {
 
   return console.log(numsMap)
 }
-
-module.exports = { intersection, twoSum }
