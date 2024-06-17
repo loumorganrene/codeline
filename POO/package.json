@@ -2,7 +2,6 @@
   "name": "poo-codeline-exercices",
   "version": "0.0.0",
   "description": "",
-  "main": "advanced.js",
   "scripts": {
     "test": "jest --watchAll"
   },

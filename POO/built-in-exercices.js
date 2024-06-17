@@ -13,10 +13,19 @@ export function intersection(arr1, arr2) {
 }
 
 export const twoSum = (nums, target) => {
-  // 🦁 Code ici
-  let numsMap = new Map(nums)
+  let indexMap = new Map()
+  let result = []
 
+  nums.map((num, i) => {
+    let part = target - num
 
+    if (indexMap.has(part)) {
+      result = [indexMap.get(part), i]
+    }
 
-  return console.log(numsMap)
+    indexMap.set(num, i)
+
+  })
+
+  return result
 }
