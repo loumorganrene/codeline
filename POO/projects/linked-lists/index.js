@@ -6,22 +6,6 @@ class ListNode {
   }
 }
 
-// let headNode = new ListNode(10);
-// console.log({value: headNode.value, nextNode: headNode.next});
-// headNode.next = new ListNode(20);
-// console.log({value: headNode.value, nextNode: headNode.next});
-// headNode.next.next = new ListNode(30);
-// console.log({value: headNode.value, nextNode: headNode.next});
-
-// while(headNode.next.next){
-//   headNode = headNode.next
-//   console.log(headNode.next)
-// }
-
-// headNode.next = null
-
-// console.log(headNode)
-
 class LinkedList { 
   constructor(node) {
     this.head = node;
@@ -56,41 +40,42 @@ class LinkedList {
   delete(nodeIndex){
     let headCopy = this.head
     let index = 0
-    //while the linked list has a next node and nodeIndex is inférior to nodeIndex - 1
-    //go to next link and increment index
-    while(headCopy.next && index < nodeIndex){ 
-      headCopy = headCopy.next
-      index++
+
+    if(nodeIndex <= index) {
+      return this
     }
 
-    if(!headCopy?.next?.next) {
-      headCopy.next = null
-      return 
+    if(this.head.next && nodeIndex === index + 1) {
+        this.head = headCopy.next
+        return this
+    }
+    //while the linked list has a next node and nodeIndex is inférior to nodeIndex - 1
+    //go to next link and increment index
+    while(headCopy.next && nodeIndex >= index + 2){
+      headCopy = headCopy.next
+      index++
     }
     //if the linked list has a next node and nodeIndex is inférior to nodeIndex - 1
     //replace deleted node value & next node with next node value & next
     headCopy.next = headCopy.next.next 
-
     return this
   }
 
   displayList() {
     let headCopy = this.head
-
     //while the linked list has a next node with a next node
     //go to the next node with a null next
-    console.log(`${headCopy.value} ->`)
-    while(headCopy.next.next){ 
+
+    while(headCopy){ 
+      console.log(`${headCopy.value} -> `)
       headCopy = headCopy.next
-      console.log(`${headCopy.value} ->`)
     }
-    console.log(`${headCopy.next.value} ->`)
-    return this
+    console.log(`NULL`)
   }
 }
 
 const linkedList = new LinkedList(new ListNode(10))
-// linkedList.add(20).add(30).add(5).displayList()
+linkedList.add(20).add(30).add(5).delete(0).displayList()
 // console.log({LIST:linkedList.head, head: linkedList.head.next.next});
-linkedList.delete(0)?.displayList()
+// linkedList.delete(0).displayList()
 // console.log({LIST_FINALE:linkedList.head, head: linkedList.head.next.next});
