@@ -45,7 +45,7 @@ class LinkedList {
       return this
     }
 
-    while (headCopy.next && nodeIndex >= index + 2) {
+    while (headCopy.next && index < nodeIndex - 2) {
       headCopy = headCopy.next
       index++
     }
@@ -94,5 +94,5 @@ class LinkedList {
 }
 
 const linkedList = new LinkedList(new ListNode(10))
-linkedList.add(20).add(30).add(5).insertAt(5, 77).displayList()
+linkedList.add(20).add(30).add(5).delete(2).displayList()
 // console.log({LIST:linkedList.head, head: linkedList.head.next.next});
