@@ -82,6 +82,18 @@ class LinkedList {
     return this
   }
 
+  get count() {
+    let headCopy = this.head
+    let nodeCount = 0
+
+    while (headCopy) {
+      headCopy = headCopy.next
+      nodeCount++
+    }
+
+    return console.log(`${nodeCount}`)
+  }
+
   displayList() {
     let headCopy = this.head
 
@@ -94,5 +106,6 @@ class LinkedList {
 }
 
 const linkedList = new LinkedList(new ListNode(10))
-linkedList.add(20).add(30).add(5).delete(2).displayList()
+linkedList.add(20).add(30).add(5).delete(2).insertAt(3, 77).displayList()
+linkedList.count
 // console.log({LIST:linkedList.head, head: linkedList.head.next.next});
