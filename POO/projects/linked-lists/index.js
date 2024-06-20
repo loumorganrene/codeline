@@ -94,6 +94,16 @@ class LinkedList {
     return console.log(`${nodeCount}`)
   }
 
+  find(value) {
+    let headCopy = this.head
+
+    while (headCopy.next && headCopy.value !== value ) {
+      headCopy = headCopy.next
+    }
+
+    return new LinkedList(headCopy)
+  }
+
   displayList() {
     let headCopy = this.head
 
@@ -106,6 +116,6 @@ class LinkedList {
 }
 
 const linkedList = new LinkedList(new ListNode(10))
-linkedList.add(20).add(30).add(5).delete(2).insertAt(3, 77).displayList()
-linkedList.count
+linkedList.add(20).add(30).add(5).insertAt(3, 77).displayList()
+linkedList.find(30).insertAt(2, 4).displayList()
 // console.log({LIST:linkedList.head, head: linkedList.head.next.next});
