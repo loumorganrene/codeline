@@ -52,8 +52,45 @@ class LinkedList {
     headCopy.next = null
     return this
   }
+
+  delete(nodeIndex){
+    let headCopy = this.head
+    let index = 0
+    //while the linked list has a next node and nodeIndex is inférior to nodeIndex - 1
+    //go to next link and increment index
+    while(headCopy.next && index < nodeIndex){ 
+      headCopy = headCopy.next
+      index++
+    }
+
+    if(!headCopy?.next?.next) {
+      headCopy.next = null
+      return 
+    }
+    //if the linked list has a next node and nodeIndex is inférior to nodeIndex - 1
+    //replace deleted node value & next node with next node value & next
+    headCopy.next = headCopy.next.next 
+
+    return this
+  }
+
+  displayList() {
+    let headCopy = this.head
+
+    //while the linked list has a next node with a next node
+    //go to the next node with a null next
+    console.log(`${headCopy.value} ->`)
+    while(headCopy.next.next){ 
+      headCopy = headCopy.next
+      console.log(`${headCopy.value} ->`)
+    }
+    console.log(`${headCopy.next.value} ->`)
+    return this
+  }
 }
 
 const linkedList = new LinkedList(new ListNode(10))
-linkedList.add(20).add(30).pop().add(5)
-console.log({LIST_FINALE:linkedList.head, head: linkedList.head.next});
+// linkedList.add(20).add(30).add(5).displayList()
+// console.log({LIST:linkedList.head, head: linkedList.head.next.next});
+linkedList.delete(0)?.displayList()
+// console.log({LIST_FINALE:linkedList.head, head: linkedList.head.next.next});
